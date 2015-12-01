@@ -1,0 +1,48 @@
+---
+layout: svbtle
+title: Home
+generator: pagination
+pagination:
+max_per_page: 10
+use:
+- posts
+
+---
+
+{% for post in page.pagination.items %}
+<div class="date">
+    <a href="{{ post.url }}">
+        {{ post.date|date("d. F, Y") }}
+    </a>
+
+</div>
+
+<article class="post">
+    <header>
+        <div class="title"><a
+                href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></div>
+    </header>
+    <div class="text">
+
+        {% if '<!--more-->' in post.blocks.content %}
+        {{ post.blocks.content | split('<!--more-->') | first | raw }}
+        <footer><a href='{{ site.url }}{{ post.url }}' class='continue'> Read more </a>
+        </footer>
+        {% else %}
+        {{ post.blocks.content | raw }}
+        {% endif %}
+
+    </div>
+</article>
+{% endfor %}
+{% if page.pagination.previous_page or page.pagination.next_page %}
+<nav id="pagination">
+    <div class="next">
+        {% if page.pagination.previous_page %}<a
+            href="{{ site.url }}{{ page.pagination.previous_page.url }}">Newer Posts</a>{% endif %}
+    </div>
+    <div class="prev">{% if page.pagination.next_page %}<a
+            href="{{ site.url }}{{ page.pagination.next_page.url }}">Older Posts</a>{% endif %}
+    </div>
+</nav>
+{% endif %}
