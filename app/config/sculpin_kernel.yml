@@ -1,3 +1,6 @@
 sculpin_content_types:
     posts:
-        permalink: blog/:year/:month/:day/:filename/
+        permalink: blog-amp/:year/:month/:day/:filename/
+        layout: post-amp
+sculpin_markdown:
+    parser_class: SitePoint\Sculpin\MDAMP

@@ -20,6 +20,12 @@
         "components/jquery": "~1.9.1",
         "components/highlightjs": "~7.3.0"
     },
+    "minimum-stability": "beta",
+    "autoload": {
+        "psr-4": {
+            "SitePoint\\Sculpin\\": "src"
+        }
+    },
     "config": {
         "component-dir": "source/components"
     }
